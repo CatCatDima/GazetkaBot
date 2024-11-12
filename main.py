@@ -2,7 +2,14 @@ import telebot
 from telebot import types
 import ads, designs, resources, users
 
-TOKEN=input("Введите API токен: ")
+with open("./key.txt") as f:
+    key=f.read()
+    if key=="":
+        TOKEN=input("Введите API токен: ")
+    else:
+        TOKEN=key
+        print('API токен загружен из файла "./key.txt"')
+    f.close()
 bot=telebot.TeleBot(TOKEN)
 
 @bot.message_handler(['start','главное_меню'])
